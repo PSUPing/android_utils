@@ -67,5 +67,5 @@ make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_CO
 make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir INSTALL_MOD_PATH=$top_dir/out/target/product/generic INSTALL_MOD_STRIP="--strip-debug --remove-section=.note.gnu.build-id" ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= modules_install
 
 echo "${green}Compiling WLAN Driver...${reset}"
-#cd $top_dir/out/target/product/generic/obj
-#make -C kernel M=$top_dir/vendor/qcom/opensource/wlan/prima O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KCFLAGS=-mno-android modules WLAN_ROOT=$top_dir/vendor/qcom/opensource/wlan/prima MODNAME=wlan BOARD_PLATFORM=msm8952 CONFIG_PRONTO_WLAN=m
+cd $top_dir/out/target/product/generic/obj
+make -C kernel M=$top_dir/vendor/qcom/opensource/wlan/prima O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KCFLAGS=-mno-android modules WLAN_ROOT=$top_dir/vendor/qcom/opensource/wlan/prima MODNAME=wlan BOARD_PLATFORM=msm8952 CONFIG_PRONTO_WLAN=m
