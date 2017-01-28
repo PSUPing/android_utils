@@ -1,6 +1,6 @@
 kernel_tag=MMI-MPJ24.139
 ###### NOTE: Change this to be your cross compile toolchain (Android NDK) ######
-cross=/Library/Android/ndk-r13b/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-
+cross=/lib/android/ndk-r13b/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-
 red=`tput setaf 1`
 green=`tput setaf 2`
 cyan=`tput setaf 6`
@@ -36,7 +36,7 @@ mv motorola-kernel motorola/kernel
 mkdir -p vendor/qcom/opensource/wlan/
 mv vendor-qcom-opensource-wlan-prima vendor/qcom/opensource/wlan/prima
 
-if [ -d "/Users/Matt/test/motorola/kernel/fs/f2fs" ]; then
+if [ -d "$top_dir/kernel/fs/f2fs" ]; then
     echo "${green}Symlink between Motorola Kernel and MSM Kernel successful${reset}"
 else
     echo "${red}Motorola kernel link does not exist, exiting.${reset}"
@@ -60,11 +60,11 @@ echo "${green}Top directory     : ${cyan}$top_dir${reset}"
 echo "${green}Kernel Out Dir    : ${cyan}$kernel_out_dir${reset}"
 echo ""
 
-#make -C kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= defoldconfig
-#make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android
-#make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android dtbs
-#make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android modules
-#make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir INSTALL_MOD_PATH=$top_dir/out/target/product/generic INSTALL_MOD_STRIP="--strip-debug --remove-section=.note.gnu.build-id" ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= modules_install
+make -C kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= defoldconfig
+make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android
+make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android dtbs
+make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= KCFLAGS=-mno-android modules
+make -C kernel KBUILD_RELSRC=$top_dir/kernel O=$kernel_out_dir INSTALL_MOD_PATH=$top_dir/out/target/product/generic INSTALL_MOD_STRIP="--strip-debug --remove-section=.note.gnu.build-id" ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= modules_install
 
 echo "${green}Compiling WLAN Driver...${reset}"
 #cd $top_dir/out/target/product/generic/obj
