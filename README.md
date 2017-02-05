@@ -41,3 +41,9 @@ Create a boot image file that can be loaded onto Motorola G4 firmware. **Note:**
 Usage: 
 
     ./mkboot.sh <location of zImage> <location of ramdisk.cpio.gz> <where to output the boot.img file>
+
+### recompile.sh
+
+Do a `make clean` for the code in the specified directory, copy the traceconfig from this repo, and recompile the kernel. 
+
+    ./recompile <location of kernel source>
