@@ -29,7 +29,10 @@ echo "${green}Add in tracing config file${reset}"
 cd $top_dir
 #( perl -le 'print "# This file was automatically generated from:\n#\t" . join("\n#\t", @ARGV) . "\n"' kernel/arch/arm/configs/msm8916-perf_defconfig kernel/arch/arm/configs/ext_config/moto-msm8916.config && cat kernel/arch/arm/configs/msm8916-perf_defconfig kernel/arch/arm/configs/ext_config/moto-msm8916.config ) > $kernel_out_dir/mapphone_defconfig || ( rm -f $kernel_out_dir/mapphone_defconfig && false )
 cp traceconfig $kernel_out_dir/mapphone_defconfig
-cp $kernel_out_dir/mapphone_defconfig $kernel_out_dir/.config
+cd $kernel_out_dir
+cp mapphone_defconfig .config
+
+cd $top_dir
 
 echo "${green}Downloading MSM Kernel...${reset}"
 git clone https://github.com/MotorolaMobilityLLC/kernel-msm/

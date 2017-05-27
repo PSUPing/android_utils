@@ -26,7 +26,10 @@ make -C kernel M=$top_dir/vendor/qcom/opensource/wlan/prima O=$kernel_out_dir AR
 echo "${green}Copying new traceconfig...${reset}"
 cd $top_dir
 cp traceconfig $kernel_out_dir/mapphone_defconfig
-cp $kernel_out_dir/mapphone_defconfig $kernel_out_dir/.config
+cd $kernel_out_dir
+cp mapphone_defconfig .config
+
+cd $top_dir
 
 echo "${green}Compiling Android kernel...${reset}"
 make -C kernel O=$kernel_out_dir ARCH=arm CROSS_COMPILE=$cross KBUILD_BUILD_USER= KBUILD_BUILD_HOST= defoldconfig
